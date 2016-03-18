@@ -1,11 +1,16 @@
-* 目标
+# 目标
+基于配置文件，快速脚本化部署AWS环境
 
 
-new.sh:  启动例子
+# 文件说明
+* new.sh
+启动例子
 
-launch_linux.sh:  快速启动Linux机型
+*launch_linux.sh
+快速启动Linux机型
 
-linux-device.json: 启动磁盘分配, 在这里启用非默认大小的磁盘和多块磁盘
+*linux-device.json
+    启动磁盘分配, 在这里启用非默认大小的磁盘和多块磁盘
 	注意：根分区需要从ami中获取到对应的snapshot信息
 	# aws ec2 describe-images --image-ids ami-52d1183f --query 'Images[*].[BlockDeviceMappings]'
 
@@ -23,14 +28,14 @@ Usage:
 
 # 参考
 
-goal:
-# Linux : root 20G, /data 30G                                                                                                                                                        #subnet-id:  subnet-8b7111ee | BP1_B_C_011_Mobile001
+# goal:
+Linux : root 20G, /data 30G                                                                                                                                                        #subnet-id:  subnet-8b7111ee | BP1_B_C_011_Mobile001
 
 1. Source AMI: RHEL 7.2 ami-52d1183f
 
 2. Get snapshot id from AMI infomation
-# aws ec2 describe-images --image-ids ami-52d1183f
-# aws ec2 describe-images --image-ids ami-52d1183f --query 'Images[*].[BlockDeviceMappings]'
+## aws ec2 describe-images --image-ids ami-52d1183f
+## aws ec2 describe-images --image-ids ami-52d1183f --query 'Images[*].[BlockDeviceMappings]'
 {
     "Images": [
         {
