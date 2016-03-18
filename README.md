@@ -21,12 +21,11 @@
 * linux-user-data.sh
 	Linux 系统启动后，自动将第二块硬盘格式化，并加载到 /data 分区
 
-Usage:
+* Usage:
    ./launch_linux.sh EC2_NAME AMI_ID IP INSTANCE_TYPE KEY_NAME ROLE_NAME SUBNET_NAME SECURITY_GROUP_NAME
 
 
 # TODO
-* Windows 支持
 * ami -> ebs snapshot自动对应
 * 异常检查
 
