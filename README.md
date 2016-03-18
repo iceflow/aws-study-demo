@@ -12,7 +12,7 @@
 * linux-device.json
     启动磁盘分配, 在这里启用非默认大小的磁盘和多块磁盘
 	注意：根分区需要从ami中获取到对应的snapshot信息
-	< aws ec2 describe-images --image-ids ami-52d1183f --query 'Images[*].[BlockDeviceMappings]'
+	> aws ec2 describe-images --image-ids ami-52d1183f --query 'Images[*].[BlockDeviceMappings]'
 
 linux-user-data.sh:  Linux 系统启动后，自动将第二块硬盘格式化，并加载到 /data 分区
 
