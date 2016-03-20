@@ -2,8 +2,9 @@
 
 CONFIG_FILE=config
 
-VPC_NAME=BP1
-OS=linux
+####################
+VPC_NAME=None
+PLATFORM=None
 EC2_NAME=$1
 AMI_ID=$2
 DISK=$3
@@ -122,6 +123,8 @@ echo "] "  >> $DST
 [ -d ${LOG_DIR} ] || mkdir -p ${LOG_DIR}
 [ -f ${CONFIG_FILE} ] || err_quit "Missing configuration file: ${CONFIG_FILE}"
 . ${CONFIG_FILE}
+
+VPC_NAME=${DEFAULT_VPC_NAME}
 
 [ $# -ne 9 ] && usage
 
