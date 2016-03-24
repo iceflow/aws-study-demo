@@ -11,10 +11,8 @@
 * launch_instance.sh
   启动EC2实例脚本
 
-* block-device.json
+* block_device_map/block-device.json: 参考例子
     启动磁盘分配, 在这里启用非默认大小的磁盘和多块磁盘: 参考例子，具体生成内容见目录 block_device_map 下内容
-	注意：根分区需要从ami中获取到对应的snapshot信息
-	> aws ec2 describe-images --image-ids ami-52d1183f --query 'Images[*].[BlockDeviceMappings]'
 * linux-user-data.sh
 	Linux 系统启动后，自动将第二块硬盘格式化，并加载到 /data 分区
 

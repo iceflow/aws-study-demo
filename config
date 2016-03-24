@@ -1,2 +1,2 @@
 DEFAULT_VPC_NAME=BP1
-DEFAULT_LINUX_USER_DATA=linux-user-data.sh
+DEFAULT_LINUX_USER_DATA=user_data/linux-user-data.sh
