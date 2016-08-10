@@ -78,7 +78,8 @@ make_block_mapping_file()
 
 	AMI_ID=$1
 	ROOT_DISK_SIZE=$(echo $2|cut -d/ -f1)
-	DATA_DISK_SIZE=$(echo $2|cut -d/ -f2)
+	DATA_DISK_SIZE=$(echo $2|cut -d/ -f2|cut -d: -f1)
+	DATA_SNAPSHOT_ID=$(echo $2|cut -d/ -f2|cut -d: -f2)
 
 	DIR=block_device_map
 
@@ -107,10 +108,17 @@ echo "  ,{
     \"DeviceName\": \"/dev/sdb\",
     \"Ebs\": {
       \"DeleteOnTermination\": true,
-      \"VolumeSize\": ${DATA_DISK_SIZE},
       \"VolumeType\": \"gp2\",
-      \"Encrypted\": false
-    }
+      \"VolumeSize\": ${DATA_DISK_SIZE}, " >> $DST
+
+	if [ "_${DATA_SNAPSHOT_ID}" = "_" ]; then
+echo "    \"Encrypted\": false " >> $DST
+	else
+echo "    \"SnapshotId\": \"${DATA_SNAPSHOT_ID}\"" >> $DST
+	fi
+
+
+echo "    }
   } " >> $DST
 	fi
 
@@ -155,6 +163,8 @@ fi
 if [ "_${PLATFORM}" != "_windows"  ]; then
 	CMD="$CMD --user-data file://${DEFAULT_LINUX_USER_DATA}"
 fi
+
+#echo "$CMD"
 
 INSTANCE_ID=`$CMD | grep InstanceId | cut -d\" -f4`
 
